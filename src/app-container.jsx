@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import AppPresentation from './app-presentation';
+import React, { Component } from "react";
+import AppPresentation from "./app-presentation";
 
 class AppContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       playing: null,
-      allMovies: null,
-      filteredMovies: null,
+      filteredMovies: null
     };
     this.startPlaying = this.startPlaying.bind(this);
     this.stopPlaying = this.stopPlaying.bind(this);
@@ -29,7 +28,7 @@ class AppContainer extends Component {
   }
 
   fetchMovies() {
-    fetch('/movies.json')
+    fetch("/movies.json")
       .then(rsp => rsp.json())
       .then(movies => this.setState({ allMovies: movies }));
   }
@@ -48,7 +47,9 @@ class AppContainer extends Component {
     if (search) {
       const searchLower = search.toLowerCase();
       const { allMovies } = this.state;
-      filteredMovies = allMovies.filter(m => m.title.toLowerCase().indexOf(searchLower) !== -1);
+      filteredMovies = allMovies.filter(
+        m => m.title.toLowerCase().indexOf(searchLower) !== -1
+      );
 
       if (!filteredMovies.length) {
         filteredMovies = null;
@@ -59,12 +60,11 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { user, allMovies, filteredMovies, playing } = this.state;
+    const { user, playing } = this.state;
 
     return (
       <AppPresentation
         user={user}
-        movies={filteredMovies || allMovies}
         startPlaying={this.startPlaying}
         playing={playing}
         stopPlaying={this.stopPlaying}

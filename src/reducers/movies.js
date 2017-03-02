@@ -3,6 +3,12 @@ const movies = (state = {}, action) => {
     case "MOVIES-LOADED":
       return Object.assign({}, state, { movies: [...action.payload] });
 
+    case 'START-PLAYING':
+      return Object.assign({}, state, { playing: action.payload });
+
+    case 'STOP-PLAYING':
+      return Object.assign({}, state, { playing: null });
+
     default:
       return state;
   }

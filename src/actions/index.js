@@ -16,3 +16,13 @@ export const login = user => dispatch => {
   });
   dispatch(loadMovies());
 };
+
+export const startPlayingMovie = movie => ({
+  type: 'START-PLAYING',
+  payload: movie,
+});
+
+export const stopPlayingMovie = () => ({
+  type: 'STOP-PLAYING',
+});
+

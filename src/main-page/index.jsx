@@ -7,14 +7,13 @@ const MainPage = ({ user, movies, startPlaying, filterMovies }) => (
   <div>
     <Header user={user} filterMovies={filterMovies} />
     <Billboard movie={movies[0]}/>
-    <GenreList movies={movies} startPlaying={startPlaying} />
+    <GenreList movies={movies} />
   </div>
 );
 
 MainPage.propTypes = {
   user: PropTypes.object.isRequired,
   movies: PropTypes.array.isRequired,
-  startPlaying: PropTypes.func.isRequired,
   filterMovies: PropTypes.func.isRequired,
 };
 

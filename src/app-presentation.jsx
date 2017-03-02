@@ -6,7 +6,7 @@ import MainPage from "./main-page";
 import AjaxLoading from "./utils/ajax-loading";
 
 const AppPresentation = (
-  { user, movies, playing, startPlaying, stopPlaying, filterMovies }
+  { user, movies, playing, filterMovies }
 ) => {
   let component = null;
 
@@ -15,13 +15,12 @@ const AppPresentation = (
   } else if (!movies) {
     component = <AjaxLoading />;
   } else if (playing) {
-    component = <PlayingMovie movie={playing} stopPlaying={stopPlaying} />;
+    component = <PlayingMovie />;
   } else {
     component = (
       <MainPage
         user={user}
         movies={movies}
-        startPlaying={startPlaying}
         filterMovies={filterMovies}
       />
     );
@@ -38,14 +37,13 @@ AppPresentation.propTypes = {
   user: PropTypes.object,
   movies: PropTypes.array,
   playing: PropTypes.object,
-  startPlaying: PropTypes.func.isRequired,
-  stopPlaying: PropTypes.func.isRequired,
   filterMovies: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, props) => Object.assign({}, props, {
   user: state.user,
-  movies: state.movies.movies
+  movies: state.movies.movies,
+  playing: state.movies.playing
 });
 
 export default connect(mapStateToProps)(AppPresentation);

@@ -1,4 +1,6 @@
 import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { stopPlayingMovie } from '../actions';
 import './playing-movie.css';
 
 const PlayingMovie = ({ movie, stopPlaying }) => (
@@ -25,4 +27,15 @@ PlayingMovie.propTypes = {
   stopPlaying: PropTypes.func.isRequired,
 };
 
-export default PlayingMovie;
+const mapStateToProps = (state) => ({
+  movie: state.movies.playing
+});
+
+const mapDispatchToProps = dispatch => ({
+  stopPlaying: movie => dispatch(stopPlayingMovie(movie)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PlayingMovie);

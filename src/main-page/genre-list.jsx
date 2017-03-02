@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import GenreRow from './genre-row';
 
-const GenreList = ({ movies, startPlaying }) => {
+const GenreList = ({ movies }) => {
   const allGenres = {};
 
   movies.forEach((movie) => {
@@ -22,7 +22,6 @@ const GenreList = ({ movies, startPlaying }) => {
         key={genre}
         genre={genre}
         movies={allGenres[genre]}
-        startPlaying={startPlaying}
       />)}
     </div>
   );
@@ -30,7 +29,6 @@ const GenreList = ({ movies, startPlaying }) => {
 
 GenreList.propTypes = {
   movies: PropTypes.array.isRequired,
-  startPlaying: PropTypes.func.isRequired,
 };
 
 export default GenreList;

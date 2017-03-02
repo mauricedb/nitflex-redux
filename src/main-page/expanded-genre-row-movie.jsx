@@ -47,4 +47,16 @@ ExpandedGenreRowMovie.propTypes = {
   startPlaying: PropTypes.func.isRequired,
 };
 
-export default ExpandedGenreRowMovie;
+import { connect } from 'react-redux';
+import { startPlayingMovie } from '../actions';
+
+const mapDispatchToProps = dispatch => ({
+  startPlaying: (movie) => {
+    dispatch(startPlayingMovie(movie));
+  },
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ExpandedGenreRowMovie);

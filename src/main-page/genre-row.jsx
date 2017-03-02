@@ -19,7 +19,7 @@ class GenreRow extends Component {
   }
 
   render() {
-    const { genre, movies, startPlaying } = this.props;
+    const { genre, movies } = this.props;
     const { expandedMovie } = this.state;
 
     return (
@@ -34,7 +34,7 @@ class GenreRow extends Component {
             />))}
 
         {expandedMovie
-          ? <ExpandedGenreRowMovie movie={expandedMovie} startPlaying={startPlaying} />
+          ? <ExpandedGenreRowMovie movie={expandedMovie} />
           : <div />}
       </div>
     );
@@ -44,7 +44,6 @@ class GenreRow extends Component {
 GenreRow.propTypes = {
   genre: PropTypes.string.isRequired,
   movies: PropTypes.array.isRequired,
-  startPlaying: PropTypes.func.isRequired,
 };
 
 export default GenreRow;

@@ -6,11 +6,8 @@ class AppContainer extends Component {
     super(props);
 
     this.state = {
-      playing: null,
       filteredMovies: null
     };
-    this.startPlaying = this.startPlaying.bind(this);
-    this.stopPlaying = this.stopPlaying.bind(this);
     this.filterMovies = this.filterMovies.bind(this);
   }
 
@@ -33,14 +30,6 @@ class AppContainer extends Component {
       .then(movies => this.setState({ allMovies: movies }));
   }
 
-  startPlaying(movie) {
-    this.setState({ playing: movie });
-  }
-
-  stopPlaying() {
-    this.setState({ playing: null });
-  }
-
   filterMovies(search) {
     let filteredMovies = null;
 
@@ -60,14 +49,8 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { user, playing } = this.state;
-
     return (
       <AppPresentation
-        user={user}
-        startPlaying={this.startPlaying}
-        playing={playing}
-        stopPlaying={this.stopPlaying}
         filterMovies={this.filterMovies}
       />
     );

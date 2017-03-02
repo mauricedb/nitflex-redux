@@ -1,0 +1,32 @@
+.genre-row .genre-row-movie {
+    padding: 0;
+    transition: transform 0.3s;
+    transition-delay: 0s;
+}
+
+.genre-row .genre-row-movie:hover {
+    transform: scale(1.25);
+    transition-delay: 0.3s;
+    z-index: 1;
+}
+
+.genre-row .genre-row-movie .title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.genre-row .genre-row-movie .expand {
+    transition: all 0.3s;
+    text-align: center;
+    opacity: 0;
+}
+
+.genre-row .genre-row-movie:hover .expand {
+    transition-delay: 0.3s;
+    opacity: 1;
+}
+
+.genre-row .genre-row-movie .btn:focus {
+  outline-style: none !important;
+}

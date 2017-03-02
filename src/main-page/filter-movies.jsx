@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { filterMovies } from '../actions';
 
 class FilterMovies extends Component {
   constructor(props) {
@@ -50,4 +52,15 @@ FilterMovies.propTypes = {
   filterMovies: PropTypes.func.isRequired,
 };
 
-export default FilterMovies;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    filterMovies: (text) => {
+      dispatch(filterMovies(text));
+    },
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(FilterMovies);

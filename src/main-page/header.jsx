@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import FilterMovies from './filter-movies';
 
-const Header = ({ user, filterMovies }) => (
+const Header = ({ user }) => (
   <nav className="navbar navbar-default">
     <div className="container-fluid">
       <div className="navbar-header">
@@ -15,14 +15,13 @@ const Header = ({ user, filterMovies }) => (
           {user.name}
         </p>
       </div>
-      <FilterMovies filterMovies={filterMovies} />
+      <FilterMovies />
     </div>
   </nav>
 );
 
 Header.propTypes = {
   user: PropTypes.shape({ name: React.PropTypes.string }).isRequired,
-  filterMovies: PropTypes.func.isRequired,
 };
 
 export default Header;

@@ -26,3 +26,7 @@ export const stopPlayingMovie = () => ({
   type: 'STOP-PLAYING',
 });
 
+export const filterMovies = search => ({
+  type: 'FILTER-MOVIES',
+  payload: search,
+});

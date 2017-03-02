@@ -3,9 +3,9 @@ import Header from './header';
 import Billboard from './billboard';
 import GenreList from './genre-list';
 
-const MainPage = ({ user, movies, startPlaying, filterMovies }) => (
+const MainPage = ({ user, movies }) => (
   <div>
-    <Header user={user} filterMovies={filterMovies} />
+    <Header user={user} />
     <Billboard movie={movies[0]}/>
     <GenreList movies={movies} />
   </div>
@@ -14,7 +14,6 @@ const MainPage = ({ user, movies, startPlaying, filterMovies }) => (
 MainPage.propTypes = {
   user: PropTypes.object.isRequired,
   movies: PropTypes.array.isRequired,
-  filterMovies: PropTypes.func.isRequired,
 };
 
 export default MainPage;

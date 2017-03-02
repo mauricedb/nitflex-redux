@@ -9,6 +9,9 @@ const movies = (state = {}, action) => {
     case 'STOP-PLAYING':
       return Object.assign({}, state, { playing: null });
 
+    case 'FILTER-MOVIES':
+      return Object.assign({}, state, { searchText: action.payload });
+
     default:
       return state;
   }

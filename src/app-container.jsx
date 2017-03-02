@@ -6,12 +6,10 @@ class AppContainer extends Component {
     super(props);
 
     this.state = { 
-      user: null,
       playing: null,
       allMovies: null,
       filteredMovies: null,
     };
-    this.loginAsUser = this.loginAsUser.bind(this);
     this.startPlaying = this.startPlaying.bind(this);
     this.stopPlaying = this.stopPlaying.bind(this);
     this.filterMovies = this.filterMovies.bind(this);
@@ -44,14 +42,6 @@ class AppContainer extends Component {
     this.setState({ playing: null });
   }
 
-  loginAsUser(user) {
-    if (user.rememberMe) {
-      localStorage.user = JSON.stringify(user);
-    }
-    this.setState({ user });
-    this.fetchMovies();
-  }
-
   filterMovies(search) {
     let filteredMovies = null;
 
@@ -74,7 +64,6 @@ class AppContainer extends Component {
     return (
       <AppPresentation
         user={user}
-        loginAsUser={this.loginAsUser}
         movies={filteredMovies || allMovies}
         startPlaying={this.startPlaying}
         playing={playing}

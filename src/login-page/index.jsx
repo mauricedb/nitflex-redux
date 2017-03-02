@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { login } from '../actions';
 
 class LoginPage extends Component {
   constructor() {
@@ -90,4 +92,15 @@ LoginPage.propTypes = {
   loginAsUser: PropTypes.func.isRequired,
 };
 
-export default LoginPage;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginAsUser: (user) => {
+      dispatch(login(user));
+    },
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(LoginPage);

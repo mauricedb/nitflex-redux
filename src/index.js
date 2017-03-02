@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
-import AppContainer from "./app-container";
+import AppPresentation from "./app-presentation";
 
 import reducers from "./reducers";
 import { login } from "./actions";
@@ -28,7 +28,7 @@ if (localStorage.user) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppContainer />
+    <AppPresentation />
   </Provider>,
   document.getElementById("root")
 );

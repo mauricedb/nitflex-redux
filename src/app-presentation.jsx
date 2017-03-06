@@ -5,12 +5,12 @@ import PlayingMovie from "./playing-movie";
 import MainPage from "./main-page";
 import AjaxLoading from "./utils/ajax-loading";
 
-const AppPresentation = ({ user, movies, playing }) => {
+const AppPresentation = ({ user, hasMovies, playing }) => {
   let component = null;
 
   if (!user) {
     component = <LoginPage />;
-  } else if (!movies) {
+  } else if (!hasMovies) {
     component = <AjaxLoading />;
   } else if (playing) {
     component = <PlayingMovie />;
@@ -18,7 +18,6 @@ const AppPresentation = ({ user, movies, playing }) => {
     component = (
       <MainPage
         user={user}
-        movies={movies}
       />
     );
   }
@@ -32,27 +31,15 @@ const AppPresentation = ({ user, movies, playing }) => {
 
 AppPresentation.propTypes = {
   user: PropTypes.object,
-  movies: PropTypes.array,
+  hasMovies: PropTypes.bool,
   playing: PropTypes.object,
 };
 
 const mapStateToProps = state => {
-  const allMovies = state.movies.movies;
-  let filteredMovies;
-
-  if (state.movies.searchText) {
-    const searchLower = state.movies.searchText.toLowerCase();
-    filteredMovies = allMovies.filter(m => m.title.toLowerCase().indexOf(searchLower) !== -1);
-
-    if (!filteredMovies.length) {
-      filteredMovies = null;
-    }
-  }
-
   return {
     user: state.user,
     playing: state.movies.playing,
-    movies: filteredMovies || allMovies,
+    hasMovies: !!state.movies.movies
   };
 };
 

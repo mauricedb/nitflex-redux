@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { connect } from "react-redux";
 
 const Billboard = ({ movie }) => (
   <div className="row">
@@ -17,4 +18,18 @@ Billboard.propTypes = {
   movie: PropTypes.object.isRequired,
 };
 
-export default Billboard;
+const mapStateToProps = state => {
+  const allMovies = state.movies.movies;
+  let firstMovies;
+
+  if (state.movies.searchText) {
+    const searchLower = state.movies.searchText.toLowerCase();
+    firstMovies = allMovies.find(m => m.title.toLowerCase().indexOf(searchLower) !== -1);
+  }
+
+  return {
+    movie: firstMovies || allMovies[0]
+  };
+};
+
+export default connect(mapStateToProps)(Billboard);

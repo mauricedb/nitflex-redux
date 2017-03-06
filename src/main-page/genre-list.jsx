@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { connect } from "react-redux";
 import GenreRow from './genre-row';
 
 const GenreList = ({ movies }) => {
@@ -31,4 +32,22 @@ GenreList.propTypes = {
   movies: PropTypes.array.isRequired,
 };
 
-export default GenreList;
+const mapStateToProps = state => {
+  const allMovies = state.movies.movies;
+  let filteredMovies;
+
+  if (state.movies.searchText) {
+    const searchLower = state.movies.searchText.toLowerCase();
+    filteredMovies = allMovies.filter(m => m.title.toLowerCase().indexOf(searchLower) !== -1);
+
+    if (!filteredMovies.length) {
+      filteredMovies = null;
+    }
+  }
+
+  return {
+    movies: filteredMovies || allMovies
+  };
+};
+
+export default connect(mapStateToProps)(GenreList);
